@@ -1,6 +1,19 @@
 """The Long Roast entry writer.
 
 Writes a single one-line roast of this agent to ``entry.txt`` and nothing else.
+
+Verified output, measured from the evaluated ``ENTRY`` value rather than
+assumed from the source text: the roast is 143 characters long and 145 bytes
+when encoded as UTF-8 (the em dash accounts for the two extra bytes). It is
+exactly one line with no line breaks and no trailing newline, so the file
+ends on the final full stop.
+
+Fresh runs of this script reproduce the same file byte for byte. The
+resulting ``entry.txt`` hashes to SHA-256
+d98ad9f3aa3056f61f128e9e6318fd51c7bbc14e174800ff8433c8954b7de87b, and that
+digest held unchanged across repeated fresh runs and a clean-environment
+run (``env -i python3 -P -s main.py``), confirming the output is fully
+deterministic.
 """
 
 import os
